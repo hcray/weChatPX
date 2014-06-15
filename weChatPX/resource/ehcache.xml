@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="ehcache.xsd" updateCheck="true"
+	monitoring="autodetect" dynamicConfig="true">
+	
+	<diskStore path="java.io.tmpdir" />
+	
+	<!--maxEntriesLocalHeap 堆内存中最大缓存对象数，0没有限制 -->
+	<!--eternal elements是否永久有效，如果为true，timeouts将被忽略，element将永不过期 -->
+	<!--diskPersistent VM重启的时候是否使用磁盘保存缓存-->
+	<cache name="tokenCache" 
+		maxEntriesLocalHeap="100" 
+		eternal="false"			  
+		overflowToDisk="false" 
+		diskPersistent="false" 
+		timeToIdleSeconds="7000"
+		timeToLiveSeconds="7000" 
+		diskExpiryThreadIntervalSeconds="120"
+		memoryStoreEvictionPolicy="LFU">
+		
+		<cacheEventListenerFactory class="com.krakentouch.weChat.listener.TokenCacheEventListenerFactory"/>
+	</cache>
+
+
+</ehcache>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>weChatPX</display-name>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  <filter>
+    <filter-name>WeChatFilter</filter-name>
+    <filter-class>com.krakentouch.weChat.filter.WechatFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>WeChatFilter</filter-name>
+    <url-pattern>*</url-pattern>
+  </filter-mapping>
+  <servlet>
+    <description></description>
+    <display-name>WeChatServlet</display-name>
+    <servlet-name>WeChatServlet</servlet-name>
+    <servlet-class>com.krakentouch.weChat.action.WeChatServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>WeChatServlet</servlet-name>
+    <url-pattern>/WeChatServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>InitServlet</display-name>
+    <servlet-name>InitServlet</servlet-name>
+    <servlet-class>com.krakentouch.weChat.action.InitServlet</servlet-class>
+    <load-on-startup>0</load-on-startup><!-- 当值为0或者大于0时，表示容器在应用启动时就加载这个servlet -->
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>InitServlet</servlet-name>
+    <url-pattern>/InitServlet</url-pattern>
+  </servlet-mapping>
+</web-app>
