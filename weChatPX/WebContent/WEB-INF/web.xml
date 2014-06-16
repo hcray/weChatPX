@@ -7,6 +7,10 @@
   <filter>
     <filter-name>WeChatFilter</filter-name>
     <filter-class>com.krakentouch.weChat.filter.WechatFilter</filter-class>
+    <init-param>
+    	<param-name>token</param-name>
+    	<param-value>Jocn4lqmsOenvNspJijS1Gyk98rmvxLC</param-value>
+    </init-param>
   </filter>
   <filter-mapping>
     <filter-name>WeChatFilter</filter-name>
