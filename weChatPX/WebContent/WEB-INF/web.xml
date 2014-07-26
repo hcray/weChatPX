@@ -4,17 +4,29 @@
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
+  
+    <filter>
+  	<filter-name>struts2</filter-name>
+  	<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+  </filter>
+  
+  <filter-mapping>
+  	<filter-name>struts2</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  
   <filter>
     <filter-name>WeChatFilter</filter-name>
     <filter-class>com.krakentouch.weChat.filter.WechatFilter</filter-class>
     <init-param>
-    	<param-name>token</param-name>
-    	<param-value>Jocn4lqmsOenvNspJijS1Gyk98rmvxLC</param-value>
+      <param-name>token</param-name>
+      <param-value>Jocn4lqmsOenvNspJijS1Gyk98rmvxLC</param-value>
     </init-param>
   </filter>
   <filter-mapping>
     <filter-name>WeChatFilter</filter-name>
-    <url-pattern>*</url-pattern>
+    <url-pattern>/action/*</url-pattern>
   </filter-mapping>
   <servlet>
     <description></description>
@@ -31,7 +43,7 @@
     <display-name>InitServlet</display-name>
     <servlet-name>InitServlet</servlet-name>
     <servlet-class>com.krakentouch.weChat.action.InitServlet</servlet-class>
-    <load-on-startup>0</load-on-startup><!-- 当值为0或者大于0时，表示容器在应用启动时就加载这个servlet -->
+    <load-on-startup>0</load-on-startup>
   </servlet>
   <servlet-mapping>
     <servlet-name>InitServlet</servlet-name>
