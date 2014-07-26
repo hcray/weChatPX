@@ -5,22 +5,22 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.Map;
+import java.nio.charset.Charset;
+
+import net.sf.json.JSONObject;
 
 import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.HttpStatus;
-import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.mime.MultipartEntity;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.entity.mime.content.FileBody;
-import org.apache.http.entity.mime.content.StringBody;
-import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.apache.struts2.ServletActionContext;
 
+import com.krakentouch.weChat.bean.UploadMediaRet;
 import com.krakentouch.weChat.tools.TokenHandler;
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 /**
@@ -69,16 +69,59 @@ public class UploadAction extends ActionSupport {
 		//关闭输出流
 		os.close();
 		
-		HttpClient httpclient = new DefaultHttpClient();
+		 CloseableHttpClient httpClient = HttpClients.createDefault();
 		
 		TokenHandler tokenHandler = new TokenHandler();
 		String accessToken = tokenHandler.getToke();
 		
 		String postUrl = "http://file.api.weixin.qq.com/cgi-bin/media/upload?access_token="+accessToken+"&type=image";
 		//请求处理页面
-		HttpPost httppost = new HttpPost(postUrl);
+		//HttpPost httppost = new HttpPost(postUrl);
 		//
 		File uploadFile = new File(uploadPath, this.getUploadfileFileName());
+		
+        // 把一个普通参数和文件上传给下面这个地址 是一个servlet
+        HttpPost httpPost = new HttpPost(postUrl);
+        
+        FileBody bin = new FileBody(uploadFile);  
+        //以浏览器兼容模式运行，防止文件名乱码。  
+        HttpEntity reqEntity = MultipartEntityBuilder.create()
+                .addPart("multipartFile", bin)
+                .build();
+
+        httpPost.setEntity(reqEntity);
+
+        // 发起请求 并返回请求的响应
+        CloseableHttpResponse response = httpClient.execute(httpPost);
+        try {
+            System.out.println("----------------------------------------");
+            // 打印响应状态
+            System.out.println(response.getStatusLine());
+            // 获取响应对象
+            HttpEntity resEntity = response.getEntity();
+            if (resEntity != null) {
+                // 打印响应长度
+                System.out.println("Response content length: "
+                        + resEntity.getContentLength());
+                // 打印响应内容
+                String retString = EntityUtils.toString(resEntity, Charset.forName("UTF-8"));
+                System.out.println(retString);
+                
+                JSONObject retMessage = JSONObject.fromObject(retString);
+                UploadMediaRet retMessageBean = (UploadMediaRet) JSONObject.toBean(retMessage ,UploadMediaRet.class);
+                System.out.println("retMessageBean: " + retMessageBean);
+                //上传成功
+                if(retMessageBean != null && retMessageBean.getMedia_id() != null){
+                	
+                }
+                
+            }
+            // 销毁
+            EntityUtils.consume(resEntity);
+        } finally {
+            response.close();
+        }
+		/*
 		//创建待处理的文件
 		FileBody file = new FileBody(uploadFile);
 		
@@ -99,6 +142,7 @@ public class UploadAction extends ActionSupport {
 				entity.consumeContent();
 			}
 		}
+		*/
 		
 		return "success";
 		
