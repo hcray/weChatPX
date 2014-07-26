@@ -20,6 +20,7 @@ import org.apache.http.util.EntityUtils;
 import org.apache.struts2.ServletActionContext;
 
 import com.krakentouch.weChat.bean.UploadMediaRet;
+import com.krakentouch.weChat.service.MediaService;
 import com.krakentouch.weChat.tools.TokenHandler;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -112,9 +113,9 @@ public class UploadAction extends ActionSupport {
                 System.out.println("retMessageBean: " + retMessageBean);
                 //上传成功
                 if(retMessageBean != null && retMessageBean.getMedia_id() != null){
-                	
+                	MediaService mediaService = new MediaService();
+                	mediaService.addPicInfo(retMessageBean);
                 }
-                
             }
             // 销毁
             EntityUtils.consume(resEntity);
