@@ -10,9 +10,9 @@ public class MediaService {
 	 * 添加到数据库
 	 * @param uploadMedia
 	 */
-	public void addPicInfo(UploadMediaRet uploadMedia){
+	public boolean addPicInfo(UploadMediaRet uploadMedia){
 		mediaDao = new MediaDao();
-		mediaDao.addPicInfo(uploadMedia);
+		return mediaDao.addPicInfo(uploadMedia);
 	}
 	
 	/**

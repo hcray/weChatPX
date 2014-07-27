@@ -123,10 +123,12 @@ public class UploadAction extends ActionSupport {
 				if (retMessageBean != null
 						&& retMessageBean.getMedia_id() != null) {
 					MediaService mediaService = new MediaService();
-					mediaService.addPicInfo(retMessageBean);
-					dataMap.put("ret", "1");
-					dataMap.put("keyNumber", retMessageBean.getCreated_at());
-					dataMap.put("msg", "success");
+					boolean addRet = mediaService.addPicInfo(retMessageBean);
+					if(addRet){
+						dataMap.put("ret", "1");
+						dataMap.put("keyNumber", retMessageBean.getCreated_at());
+						dataMap.put("msg", "success");
+					}
 				}
 			}
 			// 销毁

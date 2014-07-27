@@ -43,5 +43,6 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/struts2-jfreechart-plugin-2.1.8.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/struts2-json-plugin-2.2.3.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/struts2-core-2.1.8.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/hsqldb.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
