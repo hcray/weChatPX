@@ -39,6 +39,9 @@ public class WeChatService {
 				    boolean isDownLoad = pattern.matcher(content).matches();
 				    //为纯数字
 				    if(isDownLoad){
+				    	//当前日期
+				    	//Date curDate = new Date();
+				    	//Long curTime = curDate.getTime();
 				    	MediaDao mediaDao = new MediaDao();
 				    	String mediaId = mediaDao.selectMediaId(Integer.parseInt(content));
 				    	//又找到图片的id

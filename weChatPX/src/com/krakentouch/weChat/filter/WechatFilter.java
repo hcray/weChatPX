@@ -9,11 +9,12 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
+import com.krakentouch.weChat.tools.PropertyHandler;
 import com.krakentouch.weChat.tools.Utils;
 
 public class WechatFilter implements Filter {
 	
-	private FilterConfig filterConfig;
+	//private FilterConfig filterConfig;
 	
 
 	@Override
@@ -28,7 +29,8 @@ public class WechatFilter implements Filter {
 
 		System.out.println("WechatFilter()...");
 		//String token = "Jocn4lqmsOenvNspJijS1Gyk98rmvxLC";
-		String token = filterConfig.getInitParameter("token").toString();
+		//String token = filterConfig.getInitParameter("token").toString();
+		String token = PropertyHandler.getToken();
 	
 		String signature = request.getParameter("signature");// 微信加密签名
 		String timestamp = request.getParameter("timestamp");// 时间戳
@@ -103,7 +105,7 @@ public class WechatFilter implements Filter {
 	@Override
 	public void init(FilterConfig config) throws ServletException {
 		System.out.println("WeChatFilter init...");
-		filterConfig = config;
+		//filterConfig = config;
 
 	}
 

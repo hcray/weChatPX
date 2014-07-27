@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.krakentouch.weChat.service.WeChatService;
+import com.krakentouch.weChat.tools.PropertyHandler;
 import com.krakentouch.weChat.tools.Utils;
 
 public class WeChatServlet extends HttpServlet {
@@ -23,7 +24,8 @@ public class WeChatServlet extends HttpServlet {
 		String nonce = request.getParameter("nonce");// 随机数
 		String echostr = request.getParameter("echostr");//
 		
-		String token = "Jocn4lqmsOenvNspJijS1Gyk98rmvxLC";
+		//String token = "Jocn4lqmsOenvNspJijS1Gyk98rmvxLC";
+		String token = PropertyHandler.getToken();
 		String outPut = "";
 		// 验证
 		if (Utils.checkSignature(token, signature, timestamp, nonce)) {
