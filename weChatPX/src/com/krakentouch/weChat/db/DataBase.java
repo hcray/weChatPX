@@ -5,12 +5,12 @@ import java.util.Enumeration;
 
 public class DataBase {
 	
-private static String url;						//Êı¾İ¿âÁ¬½Ó×Ö´®
-private static String userName;				//Êı¾İ¿âÓÃ»§Ãû³Æ
-private static String driver;					//Êı¾İ¿âÇı¶¯Ãû³Æ
-private static String pwd;						//Êı¾İ¿âÓÃ»§µÇÂ½ÃÜÂë
-private final static String fileName="wechat";	//ÊôĞÔÎÄ¼şÃû³Æ
-//ThreadLocal µ±Ç°Ïß³Ì¾Ö²¿±äÁ¿
+private static String url;						//ï¿½ï¿½İ¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½
+private static String userName;				//ï¿½ï¿½İ¿ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½
+private static String driver;					//ï¿½ï¿½İ¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+private static String pwd;						//ï¿½ï¿½İ¿ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Â½ï¿½ï¿½ï¿½ï¿½
+private final static String fileName="wechat";	//ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½
+//ThreadLocal ï¿½ï¿½Ç°ï¿½ß³Ì¾Ö²ï¿½ï¿½ï¿½ï¿½ï¿½
 @SuppressWarnings("rawtypes")
 private static ThreadLocal connection=new ThreadLocal();
 
@@ -18,19 +18,19 @@ private static ThreadLocal connection=new ThreadLocal();
 		readConfig();
 	}
 
-	//	getConn·½·¨ÓÃÓÚ»ñÈ¡Êı¾İ¿âÁ¬½Ó
+	//	getConnï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú»ï¿½È¡ï¿½ï¿½İ¿ï¿½ï¿½ï¿½ï¿½ï¿½
 	/**
-	 * synchronized ¿ØÖÆ¶ÔÀà³ÉÔ±±äÁ¿µÄ·ÃÎÊ£ºÃ¿¸öÀàÊµÀı¶ÔÓ¦Ò»°ÑËø£¬
-	 * Ã¿¸ö synchronized ·½·¨¶¼±ØĞë»ñµÃµ÷ÓÃ¸Ã·½·¨µÄÀàÊµÀıµÄËø·½ÄÜÖ´ĞĞ£¬
-	 * ·ñÔòËùÊôÏß³Ì×èÈû£¬·½·¨Ò»µ©Ö´ĞĞ£¬¾Í¶ÀÕ¼¸ÃËø£¬Ö±µ½´Ó¸Ã·½·¨·µ»ØÊ±²Å
-	 * ½«ËøÊÍ·Å£¬´Ëºó±»×èÈûµÄÏß³Ì·½ÄÜ»ñµÃ¸ÃËø£¬ÖØĞÂ½øÈë¿ÉÖ´ĞĞ×´Ì¬¡£ÕâÖÖ»úÖÆ
-	 * È·±£ÁËÍ¬Ò»Ê±¿Ì¶ÔÓÚÃ¿Ò»¸öÀàÊµÀı£¬ÆäËùÓĞÉùÃ÷Îª synchronized µÄ³ÉÔ±º¯Êı
-	 * ÖĞÖÁ¶àÖ»ÓĞÒ»¸ö´¦ÓÚ¿ÉÖ´ĞĞ×´Ì¬£¨ÒòÎªÖÁ¶àÖ»ÓĞÒ»¸öÄÜ¹»»ñµÃ¸ÃÀàÊµÀı¶ÔÓ¦µÄËø£©£¬
-	 * ´Ó¶øÓĞĞ§±ÜÃâÁËÀà³ÉÔ±±äÁ¿µÄ·ÃÎÊ³åÍ»
+	 * synchronized ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½ï¿½Ä·ï¿½ï¿½Ê£ï¿½Ã¿ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½Ó¦Ò»ï¿½ï¿½ï¿½ï¿½
+	 * Ã¿ï¿½ï¿½ synchronized ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½ï¿½Ã¸Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½Ğ£ï¿½
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ö´ï¿½Ğ£ï¿½ï¿½Í¶ï¿½Õ¼ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½ï¿½Ó¸Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½Í·Å£ï¿½ï¿½Ëºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß³Ì·ï¿½ï¿½Ü»ï¿½Ã¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½×´Ì¬ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½
+	 * È·ï¿½ï¿½ï¿½ï¿½Í¬Ò»Ê±ï¿½Ì¶ï¿½ï¿½ï¿½Ã¿Ò»ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îª synchronized ï¿½Ä³ï¿½Ô±ï¿½ï¿½ï¿½ï¿½
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Ú¿ï¿½Ö´ï¿½ï¿½×´Ì¬ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ü¹ï¿½ï¿½ï¿½Ã¸ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½
+	 * ï¿½Ó¶ï¿½ï¿½ï¿½Ğ§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½ï¿½Ä·ï¿½ï¿½Ê³ï¿½Í»
 	 */ 
 	@SuppressWarnings("unchecked")
 	public synchronized static Connection getConn()throws SQLException{
-		//´Óµ±Ç°Ïß³ÌÖĞµÃµ½connection
+		//ï¿½Óµï¿½Ç°ï¿½ß³ï¿½ï¿½ĞµÃµï¿½connection
 		Connection con=(Connection) connection.get();
 		if (con!=null && !con.isClosed()){
 			return con;
@@ -40,8 +40,8 @@ private static ThreadLocal connection=new ThreadLocal();
 				Class<?> providerClass=Class.forName(driver);
 				con=DriverManager.getConnection(url,userName,pwd);
 				//setAutoCommit
-				//½«´ËÁ¬½ÓµÄ×Ô¶¯Ìá½»Ä£Ê½ÉèÖÃÎª¸ø¶¨×´Ì¬¡£Èç¹ûÁ¬½Ó´¦ÓÚ×Ô¶¯Ìá½»Ä£Ê½ÏÂ£¬Ôò½«Ö´ĞĞÆäËùÓĞ SQL Óï¾ä£¬²¢½«ÕâĞ©Óï¾ä×÷Îªµ¥¶ÀµÄÊÂÎñÌá½»¡£
-				//·ñÔò£¬Æä SQL Óï¾ä½«³É×éµØ½øÈëÍ¨¹ıµ÷ÓÃ commit ·½·¨»ò rollback ·½·¨ÖÕÖ¹µÄÊÂÎñÖĞ¡£Ä¬ÈÏÇé¿öÏÂ£¬ĞÂµÄÁ¬½Ó´¦ÓÚ×Ô¶¯Ìá½»Ä£Ê½ÏÂ¡£ 
+				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½Ô¶ï¿½ï¿½á½»Ä£Ê½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½×´Ì¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó´ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½á½»Ä£Ê½ï¿½Â£ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ SQL ï¿½ï¿½ä£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ©ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½á½»ï¿½ï¿½
+				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ SQL ï¿½ï¿½ä½«ï¿½ï¿½ï¿½ï¿½Ø½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ commit ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ rollback ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ¡ï¿½Ä¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â£ï¿½ï¿½Âµï¿½ï¿½ï¿½ï¿½Ó´ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½á½»Ä£Ê½ï¿½Â¡ï¿½ 
 				con.setAutoCommit(false);
 				connection.set(con);
 				return con;
@@ -51,17 +51,17 @@ private static ThreadLocal connection=new ThreadLocal();
 			return null;
 	}
 
-	//¶ÁÈ¡ÅäÖÃÎÄ¼şĞÅÏ¢
+	//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½Ï¢
 	@SuppressWarnings("rawtypes")
 	private static void readConfig(){
-		//PropertyResourceBundleÊ¹ÓÃÊôĞÔÎÄ¼şÖĞµÄ¾²Ì¬×Ö·û´®¼¯ºÏÀ´¹ÜÀíÓïÑÔ»·¾³×ÊÔ´¡£
+		//PropertyResourceBundleÊ¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ĞµÄ¾ï¿½Ì¬ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô»ï¿½ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½
 		PropertyResourceBundle prb=(PropertyResourceBundle) PropertyResourceBundle
 			.getBundle(fileName);
-		//Ã¶¾ÙEnumeration
+		//Ã¶ï¿½ï¿½Enumeration
 		Enumeration enu=prb.getKeys();
 		while (enu.hasMoreElements()){
 			String propertyName=enu.nextElement().toString();
-			//¶ÁÈ¡ÅäÖÃÎÄ¼şÖĞµÄ¾²Ì¬×Ö·û´®²¢ÇÒ¸³Öµ¸øÀà³ÉÔ±±äÁ¿
+			//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ĞµÄ¾ï¿½Ì¬ï¿½Ö·ï¿½ï¿½Ò¸ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½
 			if (propertyName.equals("jdbc.driver"))
 				driver=prb.getString("jdbc.driver");
 			if (propertyName.equals("jdbc.url"))
@@ -73,8 +73,8 @@ private static ThreadLocal connection=new ThreadLocal();
 		}
 	}
 		
-	//	commit Ê¹×Ô´ÓÉÏÒ»´ÎÌá½»/»Ø¹öÒÔÀ´½øĞĞµÄËùÓĞ¸ü¸Ä³ÉÎª³Ö¾Ã¸ü¸Ä£¬²¢ÊÍ·Å´Ë Connection ¶ÔÏóµ±Ç°±£´æµÄËùÓĞÊı¾İ¿âËø¶¨¡£
-	//  ´Ë·½·¨Ó¦¸ÃÖ»ÔÚÒÑ½ûÓÃ×Ô¶¯Ìá½»Ä£Ê½Ê±Ê¹ÓÃ¡£ 
+	//	commit Ê¹ï¿½Ô´ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½á½»/ï¿½Ø¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğµï¿½ï¿½ï¿½ï¿½Ğ¸ï¿½Ä³ï¿½Îªï¿½Ö¾Ã¸ï¿½Ä£ï¿½ï¿½ï¿½ï¿½Í·Å´ï¿½ Connection ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ¿ï¿½ï¿½ï¿½
+	//  ï¿½Ë·ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½Ö»ï¿½ï¿½ï¿½Ñ½ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½á½»Ä£Ê½Ê±Ê¹ï¿½Ã¡ï¿½ 
 	public static void commit(){
 		Connection con=(Connection) connection.get();
 		try{
@@ -83,7 +83,7 @@ private static ThreadLocal connection=new ThreadLocal();
 			e.printStackTrace();
 		}
 	}
-	//»Ø¹öÊÂÎñ
+	//ï¿½Ø¹ï¿½ï¿½ï¿½ï¿½ï¿½
 	public static void rollback(){
 		Connection con=(Connection) connection.get();
 		try{
@@ -92,7 +92,7 @@ private static ThreadLocal connection=new ThreadLocal();
 			e.printStackTrace();
 		}
 	}
-	//ÊÍ·ÅÊı¾İ¿âÁ¬½Ó
+	//ï¿½Í·ï¿½ï¿½ï¿½İ¿ï¿½ï¿½ï¿½ï¿½ï¿½
 	public synchronized static void releaseConnection(Connection connection){
 		try{
 			if (connection!= null && !connection.isClosed())
