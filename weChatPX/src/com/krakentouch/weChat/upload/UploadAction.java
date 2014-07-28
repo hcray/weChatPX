@@ -133,7 +133,9 @@ public class UploadAction extends ActionSupport {
 			}
 			// 销毁
 			EntityUtils.consume(resEntity);
-		} finally {
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally {
 			response.close();
 		}
 		return "json";
